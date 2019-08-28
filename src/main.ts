@@ -5,7 +5,7 @@ import * as io from '@actions/io';
 import * as os from 'os';
 import * as path from 'path';
 
-async function run() {
+export async function run() {
     
     const platformName = os.platform()
     const version = core.getInput('version');
