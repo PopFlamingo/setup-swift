@@ -37,6 +37,7 @@ export async function install(version: string) {
                 let subdir = 'swift-'+version+'-RELEASE-ubuntu'+ uversion
                 exec.exec('ls', [swiftPath + '/' + subdir]);
                 exec.exec('ls', [swiftPath + '/' + subdir + '/usr/bin/']);
+                exec.exec('apt-get', ['install', '-y', 'clang', 'libicu-dev'])
                 actualPath = swiftPath + '/' + subdir;
                 await tc.cacheDir(actualPath, 'swift', version);
             } catch(e) {
