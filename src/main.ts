@@ -5,10 +5,9 @@ import * as io from '@actions/io';
 import * as os from 'os';
 import * as path from 'path';
 
-export async function run() {
+export async function install(version: string) {
     
     const platformName = os.platform()
-    const version = core.getInput('version');
 
     if (platformName === "linux") {
         let myOutput = os.release()        
@@ -35,6 +34,10 @@ export async function run() {
         return
     }
         
+}
+
+async function run() {
+    install(core.getInput('version'));
 }
 
 run();
