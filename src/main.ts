@@ -29,7 +29,8 @@ export async function run() {
         }
 
         if (myOutput !== 'Ubuntu') {
-            core.setFailed('Currently, only Ubuntu Linux is supported');
+            core.setFailed("Currently, the " + myOutput + "platform isn't supported");
+            return
         }
 
         myOutput = '';
