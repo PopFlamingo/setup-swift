@@ -33,6 +33,7 @@ export async function install(version: string) {
                 const tarPath = await tc.downloadTool(url);
                 await io.mkdirP(os.homedir() + '/swift-downloads/')
                 swiftPath = await tc.extractTar(tarPath, os.homedir() + '/swift-downloads/')
+                exec.exec('ls', [swiftPath]);
                 await tc.cacheDir(swiftPath, 'swift', version)
             } catch(e) {
                 core.setFailed("Couldn't download and install Swift, error: " + e)
@@ -40,7 +41,7 @@ export async function install(version: string) {
             }
         }
         
-        exec.exec('ls', [swiftPath]);
+        
         core.addPath(path.join(swiftPath, 'usr', 'bin'));
         core.warning(swiftPath)
 
