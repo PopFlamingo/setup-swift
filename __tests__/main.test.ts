@@ -1,3 +1,7 @@
-describe('TODO - Add a test suite', () => {
-  it('TODO - Add a test', async () => {});
+import * as exec from '@actions/exec';
+
+describe('Test suite', () => {
+  it('Attempt to call Swift', async () => {
+    exec.exec("swift", ["--version"]);
+  });
 });
