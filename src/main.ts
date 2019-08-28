@@ -38,16 +38,16 @@ export async function install(version: string) {
                 exec.exec('ls', [swiftPath + '/' + subdir]);
                 exec.exec('ls', [swiftPath + '/' + subdir + '/usr/bin/']);
                 actualPath = swiftPath + '/' + subdir;
-                await tc.cacheDir(actualPath, 'swift', version)
+                await tc.cacheDir(actualPath, 'swift', version);
             } catch(e) {
-                core.setFailed("Couldn't download and install Swift, error: " + e)
+                core.setFailed("Couldn't download and install Swift, error: " + e);
                 return
             }
         }
         
         
-        core.addPath(path.join(actualPath, 'usr', 'bin'));
-        core.warning(actualPath)
+        await core.addPath(path.join(actualPath, 'usr', 'bin'));
+        await core.warning(actualPath);
 
     } else {
         core.setFailed("Platform " + platformName + " isn't currently supported.");
