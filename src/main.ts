@@ -10,7 +10,8 @@ export async function install(version: string) {
     const platformName = os.platform()
 
     if (platformName === "linux") {
-        let myOutput = os.release()        
+        let myOutput = os.release()       
+        await exec.exec('lsb_release', ['-a']); 
         core.warning(myOutput);
         const dotLessPlatformNum = myOutput.replace('.', '');
 
