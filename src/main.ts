@@ -10,15 +10,24 @@ export async function install(version: string) {
     const platformName = os.platform()
 
     if (platformName === "linux") {
-        let myOutput = os.release()       
-        await exec.exec('lsb_release', ['-a']); 
-        core.warning(myOutput);
-        const dotLessPlatformNum = myOutput.replace('.', '');
+        let myOutput = ""      
+        const options = {
+            listeners: {
+                stdout: (data: Buffer) => {
+                    myOutput += data.toString;
+                }
+            }
+        }
+        let uversion = myOutput.split('\t')[1];
+        await exec.exec('lsb_release', ['-r']);
+        exec.exec 
+        core.warning(uversion);
+        const dotLessPlatformNum = uversion.replace('.', '');
 
         let swiftPath = tc.find('swift', version)
         if (!swiftPath) {
             try {
-                const url = 'https://swift.org/builds/swift-'+version+'-release/ubuntu'+dotLessPlatformNum+'/swift-'+version+'-RELEASE/swift-'+version+'-RELEASE-ubuntu'+myOutput+'.tar.gz';
+                const url = 'https://swift.org/builds/swift-'+version+'-release/ubuntu'+dotLessPlatformNum+'/swift-'+version+'-RELEASE/swift-'+version+'-RELEASE-ubuntu'+uversion+'.tar.gz';
                 core.warning(url);
                 const tarPath = await tc.downloadTool(url);
                 await io.mkdirP(os.homedir() + '/swift-downloads/')
