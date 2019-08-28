@@ -36,6 +36,7 @@ export async function install(version: string) {
                 swiftPath = await tc.extractTar(tarPath, os.homedir() + '/swift-downloads/')
                 let subdir = 'swift-'+version+'-RELEASE-ubuntu'+ uversion
                 exec.exec('ls', [swiftPath + '/' + subdir]);
+                exec.exec('ls', [swiftPath + '/' + subdir + '/usr/bin/']);
                 actualPath = swiftPath + '/' + subdir;
                 await tc.cacheDir(actualPath, 'swift', version)
             } catch(e) {
