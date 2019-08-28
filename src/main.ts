@@ -11,7 +11,7 @@ export async function install(version: string) {
 
     if (platformName === "linux") {
         let myOutput = os.release()        
-
+        core.warning(myOutput);
         const dotLessPlatformNum = myOutput.replace('.', '');
 
         let swiftPath = tc.find('swift', version)
