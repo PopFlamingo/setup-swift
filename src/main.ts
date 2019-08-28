@@ -11,30 +11,7 @@ export async function run() {
     const version = core.getInput('version');
 
     if (platformName === "linux") {
-        let myOutput = '';
-        let myError = '';
-        const options = {
-            listeners: {
-                stdout: (data: Buffer) => {
-                    myOutput += data.toString();
-                },
-                stderr: (data: Buffer) => {
-                    myError += data.toString();
-                }
-            }
-        };
-        await exec.exec("lsb_release", ["-i"], options);
-        if (myError !== '') {
-            core.setFailed("Error getting Linux version, the OS is probably not GNU. Error: " + myError);
-        }
-
-        if (myOutput !== 'Ubuntu') {
-            core.setFailed("Currently, the " + myOutput + "platform isn't supported");
-            return
-        }
-
-        myOutput = '';
-        await exec.exec("lsb_release", ["-r"], options);        
+        let myOutput = os.release()        
 
         const dotLessPlatformNum = myOutput.replace('.', '');
 
