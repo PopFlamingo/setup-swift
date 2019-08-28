@@ -18,9 +18,8 @@ export async function install(version: string) {
                 }
             }
         }
+        await exec.exec('lsb_release', ['-r'], options);
         let uversion = myOutput.split('\t')[1];
-        await exec.exec('lsb_release', ['-r']);
-        exec.exec 
         core.warning(uversion);
         const dotLessPlatformNum = uversion.replace('.', '');
 
