@@ -41,6 +41,7 @@ export async function install(version: string) {
         }
         
         core.addPath(path.join(swiftPath, 'usr', 'bin'));
+        core.warning(swiftPath)
 
     } else {
         core.setFailed("Platform " + platformName + " isn't currently supported.");
