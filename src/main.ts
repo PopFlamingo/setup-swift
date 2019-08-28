@@ -14,7 +14,7 @@ export async function install(version: string) {
         const options = {
             listeners: {
                 stdout: (data: Buffer) => {
-                    myOutput += data.toString;
+                    myOutput += data.toString();
                 }
             }
         }
