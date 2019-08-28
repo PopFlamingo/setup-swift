@@ -17,7 +17,9 @@ export async function install(version: string) {
         let swiftPath = tc.find('swift', version)
         if (!swiftPath) {
             try {
-                const tarPath = await tc.downloadTool('https://swift.org/builds/swift-'+version+'-release/ubuntu'+dotLessPlatformNum+'/swift-'+version+'-RELEASE/swift-'+version+'-RELEASE-ubuntu'+myOutput+'.tar.gz');
+                const url = 'https://swift.org/builds/swift-'+version+'-release/ubuntu'+dotLessPlatformNum+'/swift-'+version+'-RELEASE/swift-'+version+'-RELEASE-ubuntu'+myOutput+'.tar.gz';
+                core.warning(url);
+                const tarPath = await tc.downloadTool(url);
                 await io.mkdirP(os.homedir() + '/swift-downloads/')
                 const installPath = await tc.extractTar(tarPath, os.homedir() + '/swift-downloads/')
                 await tc.cacheDir(installPath, 'swift', version)
