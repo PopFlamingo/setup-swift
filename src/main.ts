@@ -40,6 +40,7 @@ export async function install(version: string) {
             }
         }
         
+        exec.exec('ls', [swiftPath]);
         core.addPath(path.join(swiftPath, 'usr', 'bin'));
         core.warning(swiftPath)
 
