@@ -1,8 +1,8 @@
 {
-  "name": "node12-template-action",
+  "name": "setup-swift",
   "version": "0.0.0",
   "private": true,
-  "description": "Node 12 template action",
+  "description": "GitHub action to setup Swift",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/javascript-template.git"
+    "url": "git+https://github.com/adtrevor/setup-swift.git"
   },
   "keywords": [
     "actions",
     "node",
     "setup"
   ],
-  "author": "GitHub",
+  "author": "Trevör",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.0.0"
