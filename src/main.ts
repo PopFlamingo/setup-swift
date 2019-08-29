@@ -48,9 +48,6 @@ export async function install(version: string) {
         
         
         await core.addPath(path.join(actualPath, 'usr', 'bin'));
-        await core.warning("foo");
-        await core.warning(process.env['PATH']);
-
     } else {
         core.setFailed("Platform " + platformName + " isn't currently supported.");
         return
