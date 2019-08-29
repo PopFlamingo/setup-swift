@@ -6,7 +6,7 @@ import * as os from 'os';
 import * as path from 'path';
 import { stringLiteral } from '@babel/types';
 
-function extractDataFromLsb(raw: string): string {
+function extractLsbOutput(raw: string): string {
     const secondPart = raw.split('\t')[1];
     return secondPart.substr(0, secondPart.length-1);
 }
@@ -21,7 +21,7 @@ async function lsbRelease(option: string): Promise<string> {
         }
     }
     await exec.exec("lsb_release", [option], execOptions);
-    return extractDataFromLsb(execOutput);
+    return extractLsbOutput(execOutput);
 }
 
 interface PlatformInfo {
@@ -94,17 +94,13 @@ export async function install(swiftVersion: string) {
     core.warning(downloadURL);
 
     // Download and extract the Swift tools
-    let toolBaseDir = /* process.env["RUNNER_TOOL_CACHE"] || */ "";
-    if (toolBaseDir == "") {
-        toolBaseDir = os.homedir()  
-    }
+    let toolBaseDir = process.env["RUNNER_TOOL_CACHE"] || os.homedir();
     const swiftDownloadsDir = path.join(toolBaseDir, '/swift-downloads/');
     await io.mkdirP(swiftDownloadsDir);
     let extractedPath = await downloadAndExtract(downloadURL, swiftDownloadsDir);
     let osName = (platformInfo.distributor + platformInfo.release).toLowerCase();
     let versionSpecificPath = path.join(extractedPath, '/swift-'+nsv+'-RELEASE-'+osName);
     let binPath = path.join(versionSpecificPath, "/usr", "/bin/");
-    await exec.exec("ls", [binPath]);
 
     // Install required dependencies
     if (platformInfo.platform === "linux") {
