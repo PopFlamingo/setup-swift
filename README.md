@@ -1,9 +1,9 @@
 # setup-swift
 This GitHub action installs Swift, enabling you to use it directly from your workflows.
-Currently Linux is the only supported.
+Currently Linux is the only supported platform which is enough for multiple use cases, but macOS support and Windows support would be nice to have too.
 
 # Usage
-This action isn't tagged yet, so you will need to use it from master.
+This action isn't tagged yet, so you will need to use it from master with `adtrevor/setup-swift@master`.
 
 Basic usage:
 ```yaml
