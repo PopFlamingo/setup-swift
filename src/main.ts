@@ -92,7 +92,7 @@ export async function install(swiftVersion: string) {
     let osName = (platformInfo.distributor + platformInfo.release).toLowerCase();
     const nsv = normalizeSwiftVersion(swiftVersion);  
     const downloadURL = await getDownloadURL(swiftVersion, platformInfo);
-    let versionSpecificPath = tc.find('swift', nsv + '-' + osName);
+    let versionSpecificPath = tc.find('swift', nsv, osName);
 
     if (!versionSpecificPath) {
         console.log("Didn't find specified Swift tools version in the cache, downloading at " + downloadURL);
@@ -102,7 +102,7 @@ export async function install(swiftVersion: string) {
         await io.mkdirP(swiftDownloadsDir);
         let extractedPath = await downloadAndExtract(downloadURL, swiftDownloadsDir);
         versionSpecificPath = path.join(extractedPath, '/swift-'+nsv+'-RELEASE-'+osName); 
-        tc.cacheDir(versionSpecificPath, "swift", nsv + '-' + osName);
+        tc.cacheDir(versionSpecificPath, "swift", nsv, osName);
     } else {
         console.log("Found existing Swift tools in cache at path: " + versionSpecificPath)
     }
