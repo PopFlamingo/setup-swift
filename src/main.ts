@@ -89,19 +89,24 @@ async function downloadAndExtract(swiftURL: string, destination: string): Promis
 
 export async function install(swiftVersion: string) {
     const platformInfo = await getPlatformInfo();
+    let osName = (platformInfo.distributor + platformInfo.release).toLowerCase();
     const nsv = normalizeSwiftVersion(swiftVersion);  
     const downloadURL = await getDownloadURL(swiftVersion, platformInfo);
     core.warning(downloadURL);
+    let versionSpecificPath = tc.find('swift', nsv + '-' + osName);
+    
+    if (!versionSpecificPath) {
+        // Download and extract the Swift tools
+        let toolBaseDir = process.env["RUNNER_TOOL_CACHE"] || os.homedir();
+        const swiftDownloadsDir = path.join(toolBaseDir, '/swift-downloads/');
+        await io.mkdirP(swiftDownloadsDir);
+        let extractedPath = await downloadAndExtract(downloadURL, swiftDownloadsDir);
+        versionSpecificPath = path.join(extractedPath, '/swift-'+nsv+'-RELEASE-'+osName); 
+        tc.cacheDir(versionSpecificPath, "swift", nsv + '-' + osName);
+    }
 
-    // Download and extract the Swift tools
-    let toolBaseDir = process.env["RUNNER_TOOL_CACHE"] || os.homedir();
-    const swiftDownloadsDir = path.join(toolBaseDir, '/swift-downloads/');
-    await io.mkdirP(swiftDownloadsDir);
-    let extractedPath = await downloadAndExtract(downloadURL, swiftDownloadsDir);
-    let osName = (platformInfo.distributor + platformInfo.release).toLowerCase();
-    let versionSpecificPath = path.join(extractedPath, '/swift-'+nsv+'-RELEASE-'+osName);
     let binPath = path.join(versionSpecificPath, "/usr", "/bin/");
-
+    
     // Install required dependencies
     if (platformInfo.platform === "linux") {
         await exec.exec('sudo', ['apt-get', 'install', '-y', 'clang', 'libicu-dev']);
