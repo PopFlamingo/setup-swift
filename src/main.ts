@@ -105,7 +105,7 @@ export async function install(swiftVersion: string) {
 
     // Install required dependencies
     if (platformInfo.platform === "linux") {
-        await exec.exec('apt-get', ['install', '-y', 'clang', 'libicu-dev']);
+        await exec.exec('sudo', ['apt-get', 'install', '-y', 'clang', 'libicu-dev']);
     }
 
     // Add swift tools to the path
