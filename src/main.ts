@@ -120,7 +120,7 @@ export async function install(swiftVersion: string) {
 }
 
 async function run() {
-    install(core.getInput('version'));
+    install(core.getInput('swift-version'));
 }
 
 run();

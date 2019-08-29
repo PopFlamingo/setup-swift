@@ -2,9 +2,12 @@ name: 'Setup Swift'
 description: 'Setup Swift'
 author: 'Trevör'
 inputs:
-  version:
-    description: 'Swift version to use'
-    default: '5.0'
+  swift-version:
+    description: 'The exact Swift version to use (no version range yet)'
+    required: true
 runs:
   using: 'node12'
   main: 'lib/main.js'
+branding:
+  icon: 'arrow-down-circle'
+  color: 'orange'
