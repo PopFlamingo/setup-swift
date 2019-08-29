@@ -2,6 +2,8 @@
 This GitHub action installs Swift, enabling you to use it directly from your workflows.
 Currently Linux is the only supported platform which is enough for multiple use cases, but macOS support and Windows support would be nice to have too.
 
+> ⚠️ Note that this action isn't production ready yet and that GitHub Actions is still in beta and might not yet be available for you. Don't forget to sign-in to get an invite.
+
 # Usage
 This action isn't tagged yet, so you will need to use it from master with `adtrevor/setup-swift@master`.
 
