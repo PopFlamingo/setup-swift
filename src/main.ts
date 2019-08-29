@@ -102,6 +102,7 @@ export async function install(swiftVersion: string) {
     await io.mkdirP(swiftDownloadsDir);
     let extractedPath = await downloadAndExtract(downloadURL, swiftDownloadsDir);
     let binPath = path.join(extractedPath, "/usr", "/bin/");
+    await exec.exec("ls", [extractedPath]);
 
     // Install required dependencies
     if (platformInfo.platform === "linux") {
