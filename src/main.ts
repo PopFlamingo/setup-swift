@@ -72,9 +72,9 @@ async function getDownloadURL(swiftVersion: string, platformInfo: PlatformInfo):
     let nsv = swiftVersion;
 
     // Dotless release
-    let osName = platformInfo.distributor + platformInfo.release
-    let dlOSName = osName.replace('.','');
-    return 'https://swift.org/builds/swift-'+nsv+'-release/'+dlOSName+'/swift-'+nsv+'-RELEASE/swift-'+nsv+'-RELEASE-ubuntu'+osName+'.tar.gz';
+    let osName = (platformInfo.distributor + platformInfo.release).toLowerCase();
+    let dlOSName = osName.replace('.','').toLowerCase();
+    return 'https://swift.org/builds/swift-'+nsv+'-release/'+dlOSName+'/swift-'+nsv+'-RELEASE/swift-'+nsv+'-RELEASE-'+osName+'.tar.gz';
 }
 
 async function downloadAndExtract(swiftURL: string, destination: string): Promise<string> {
