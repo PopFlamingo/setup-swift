@@ -6,6 +6,7 @@ Currently Linux is the only supported platform which is enough for multiple use 
 
 # Usage
 This action isn't tagged yet, so you will need to use it from master with `adtrevor/setup-swift@master`.
+[HelloSetupSwift](https://github.com/adtrevor/HelloSetupSwift) is a minimal example Swift package using this action.
 
 Basic usage:
 ```yaml
