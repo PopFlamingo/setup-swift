@@ -49,7 +49,7 @@ export async function install(version: string) {
         
         
         await core.addPath(path.join(actualPath, 'usr', 'bin'));
-        await core.warning(process.env.PATH);
+        await core.warning("foo");
         await core.warning(actualPath);
 
     } else {
