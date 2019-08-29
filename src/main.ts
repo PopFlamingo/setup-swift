@@ -83,7 +83,7 @@ async function downloadAndExtract(swiftURL: string, destination: string): Promis
     if (swiftURL.endsWith(".tar.gz")) {
         return await tc.extractTar(donwloadPath, destination);
     } else {
-        throw new Error('Unrecognized archive format')
+        throw new Error('Unrecognized archive format');
     }
 }
 
@@ -91,7 +91,7 @@ export async function install(swiftVersion: string) {
     const platformInfo = await getPlatformInfo();
     const nsv = normalizeSwiftVersion(swiftVersion);  
     const downloadURL = await getDownloadURL(swiftVersion, platformInfo);
-
+    core.warning(downloadURL);
 
     // Download and extract the Swift tools
     let toolBaseDir = process.env["RUNNER_TOOLSDIRECTORY"] || "";
