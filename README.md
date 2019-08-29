@@ -5,7 +5,7 @@ Currently Linux is the only supported platform which is enough for multiple use 
 > ⚠️ Note that this action isn't production ready yet and that GitHub Actions is still in beta and might not yet be available for you. Don't forget to sign-in to get an invite.
 
 # Usage
-This action isn't tagged yet, so you will need to use it from master with `adtrevor/setup-swift@master`.
+This action isn't tagged yet, so you will need to use it from master with `adtrevor/setup-swift@master`.  
 [HelloSetupSwift](https://github.com/adtrevor/HelloSetupSwift) is a minimal example Swift package using this action.
 
 Basic usage:
@@ -38,3 +38,6 @@ jobs:
     - name: Test package
       run: swift test
 ```
+
+# Limitations
+Currently, the tool only supports downloading already Linux Ubuntu *release* versions.
