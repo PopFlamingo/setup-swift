@@ -94,7 +94,7 @@ export async function install(swiftVersion: string) {
     core.warning(downloadURL);
 
     // Download and extract the Swift tools
-    let toolBaseDir = process.env["RUNNER_TOOL_CACHE"] || "";
+    let toolBaseDir = /* process.env["RUNNER_TOOL_CACHE"] || */ "";
     if (toolBaseDir == "") {
         toolBaseDir = os.homedir()  
     }
