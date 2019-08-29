@@ -31,7 +31,7 @@ jobs:
     - uses: actions/checkout@v1
     - uses: adtrevor/setup-swift@master
       with:
-        version: '5.0.2'
+        swift-version: '5.0.2'
     - name: Build package
       run: swift build
     - name: Test package
