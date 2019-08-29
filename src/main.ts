@@ -99,6 +99,7 @@ export async function install(swiftVersion: string) {
         toolBaseDir = os.homedir()  
     }
     const swiftDownloadsDir = path.join(toolBaseDir, '/swift-downloads/');
+    await io.mkdirP(swiftDownloadsDir);
     let extractedPath = await downloadAndExtract(downloadURL, swiftDownloadsDir);
     let binPath = path.join(extractedPath, "/usr", "/bin/");
 
