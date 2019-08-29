@@ -92,10 +92,10 @@ export async function install(swiftVersion: string) {
     let osName = (platformInfo.distributor + platformInfo.release).toLowerCase();
     const nsv = normalizeSwiftVersion(swiftVersion);  
     const downloadURL = await getDownloadURL(swiftVersion, platformInfo);
-    core.warning(downloadURL);
     let versionSpecificPath = tc.find('swift', nsv + '-' + osName);
-    
+
     if (!versionSpecificPath) {
+        core.debug("Didn't find specified Swift tools version in the cache, downloading at " + downloadURL);
         // Download and extract the Swift tools
         let toolBaseDir = process.env["RUNNER_TOOL_CACHE"] || os.homedir();
         const swiftDownloadsDir = path.join(toolBaseDir, '/swift-downloads/');
@@ -103,12 +103,15 @@ export async function install(swiftVersion: string) {
         let extractedPath = await downloadAndExtract(downloadURL, swiftDownloadsDir);
         versionSpecificPath = path.join(extractedPath, '/swift-'+nsv+'-RELEASE-'+osName); 
         tc.cacheDir(versionSpecificPath, "swift", nsv + '-' + osName);
+    } else {
+        core.debug("Found existing Swift tools in cache at path: " + versionSpecificPath)
     }
 
     let binPath = path.join(versionSpecificPath, "/usr", "/bin/");
     
     // Install required dependencies
     if (platformInfo.platform === "linux") {
+        core.debug("Installing Swift dependencies for Linux Ubuntu")
         await exec.exec('sudo', ['apt-get', 'install', '-y', 'clang', 'libicu-dev']);
     }
 
