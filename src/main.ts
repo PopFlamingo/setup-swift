@@ -4,7 +4,6 @@ import * as exec from '@actions/exec';
 import * as io from '@actions/io';
 import * as os from 'os';
 import * as path from 'path';
-import * as process from 'process';
 
 export async function install(version: string) {
     
@@ -50,7 +49,7 @@ export async function install(version: string) {
         
         await core.addPath(path.join(actualPath, 'usr', 'bin'));
         await core.warning("foo");
-        await core.warning(actualPath);
+        await core.warning(process.env['PATH']);
 
     } else {
         core.setFailed("Platform " + platformName + " isn't currently supported.");
