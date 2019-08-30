@@ -7,6 +7,6 @@ describe('Test suite', () => {
   it('Comming soon... tests', async () => {
     const installPath = await main.install('5.0');
     const binpath = path.join(installPath, '/usr', '/bin');
-    exec.exec(path.join(binpath, '/swift'), ['--version']);
-  }, 120000);
+    await exec.exec(path.join(binpath, '/swift'), ['--version']);
+  }, 180000);
 });
