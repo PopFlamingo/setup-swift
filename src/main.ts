@@ -53,15 +53,19 @@ function normalizeSwiftVersion(swiftVersion: string): string {
     let nsv: string;
     let splitVersion = swiftVersion.split('.')
     let partCount = splitVersion.length;
+    core.warning('' + partCount);
     if (partCount == 2) {
+        core.warning("Executed branch for 2")
         nsv = swiftVersion;
     } else if (partCount == 3) {
+        core.warning("Executed branch for 3")
         if (splitVersion[2] === '0') {
             nsv = splitVersion[0] + '.' + splitVersion[1]
         } else {
             nsv = swiftVersion;
         }
     } else {
+        core.warning("Error branch")
         throw new Error("Invalid Swift verison " + swiftVersion);
     }
     return nsv;
