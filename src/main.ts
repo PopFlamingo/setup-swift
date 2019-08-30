@@ -64,7 +64,8 @@ function normalizeSwiftVersion(swiftVersion: string): string {
             nsv = swiftVersion;
         }
     } else {
-        throw new Error("Invalid Swift verison " + swiftVersion)
+        core.warning("Executed the version error branch");
+        throw new Error("Invalid Swift verison " + swiftVersion);
     }
     return nsv;
 }
