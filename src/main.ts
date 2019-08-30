@@ -53,6 +53,8 @@ function normalizeSwiftVersion(swiftVersion: string): string {
     let nsv: string;
     let splitVersion = swiftVersion.split('.')
     let partCount = splitVersion.length;
+    core.warning(swiftVersion);
+    core.warning('' + splitVersion.length);
     if (partCount === 2) {
         nsv = swiftVersion;
     } else if (partCount === 3) {
