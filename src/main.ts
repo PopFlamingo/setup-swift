@@ -53,22 +53,15 @@ function normalizeSwiftVersion(swiftVersion: string): string {
     let nsv: string;
     let splitVersion = swiftVersion.split('.')
     let partCount = splitVersion.length;
-    let stack = new Error().stack
-    console.log(stack)
-    core.warning('arg: ' + swiftVersion);
-    core.warning('' + partCount);
     if (partCount == 2) {
-        core.warning("Executed branch for 2")
         nsv = swiftVersion;
     } else if (partCount == 3) {
-        core.warning("Executed branch for 3")
         if (splitVersion[2] === '0') {
             nsv = splitVersion[0] + '.' + splitVersion[1]
         } else {
             nsv = swiftVersion;
         }
     } else {
-        core.warning("Error branch")
         throw new Error("Invalid Swift verison " + swiftVersion);
     }
     return nsv;
@@ -97,7 +90,6 @@ async function downloadAndExtract(swiftURL: string, destination: string): Promis
 export async function install(swiftVersion: string): Promise<string> {
     const platformInfo = await getPlatformInfo();
     let osName = (platformInfo.distributor + platformInfo.release).toLowerCase();
-    core.warning("Install called with " + swiftVersion);
     const nsv = normalizeSwiftVersion(swiftVersion);  
     const downloadURL = await getDownloadURL(swiftVersion, platformInfo);
     let versionSpecificPath = tc.find('swift', nsv, osName);
