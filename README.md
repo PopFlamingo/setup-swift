@@ -7,14 +7,13 @@ Currently Linux is the only supported platform which is enough for multiple use 
 > ⚠️ Note that this action isn't production ready yet and that GitHub Actions is still in beta and might not yet be available for you. Don't forget to sign-in to get an invite.
 
 # Usage
-This action isn't tagged yet, so you will need to use it from master with `adtrevor/setup-swift@master`.  
 [HelloSetupSwift](https://github.com/adtrevor/HelloSetupSwift) is a minimal example Swift package using this action.
 
-Basic usage:
+Basic usage in a workflow:
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: adtrevor/setup-swift@master
+- uses: adtrevor/setup-swift@v0.1-alpha
   with:
     swift-version: '5.0.2' # Currently, you must specify a specific Swift version (no version range)
 - run: swift test # Use Swift tools
@@ -31,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v0.1-alpha
     - uses: adtrevor/setup-swift@master
       with:
         swift-version: '5.0.2'
