@@ -1,5 +1,5 @@
 # setup-swift
-![](https://github.com/adtrevor/setup-swift/workflows/PR%20Checks/badge.svg)
+![](https://github.com/adtrevor/setup-swift/workflows/Unit%20tests/badge.svg)
 
 This GitHub action installs Swift, enabling you to use it directly from your workflows.
 Currently Linux is the only supported platform which is enough for multiple use cases, but macOS support and Windows support would be nice to have too.  
