@@ -5,7 +5,7 @@ import * as path from 'path'
 
 describe('Test suite', () => {
   it('Comming soon... tests', async () => {
-    const installPath = await main.install('5.0.2');
+    const installPath = await main.install("5.0.2");
     const binpath = path.join(installPath, '/usr', '/bin');
     await exec.exec(path.join(binpath, '/swift'), ['--version']);
   }, 180000);
