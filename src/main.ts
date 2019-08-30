@@ -97,7 +97,7 @@ async function downloadAndExtract(swiftURL: string, destination: string): Promis
 export async function install(swiftVersion: string): Promise<string> {
     const platformInfo = await getPlatformInfo();
     let osName = (platformInfo.distributor + platformInfo.release).toLowerCase();
-    core.error("Install called with " + swiftVersion);
+    core.warning("Install called with " + swiftVersion);
     const nsv = normalizeSwiftVersion(swiftVersion);  
     const downloadURL = await getDownloadURL(swiftVersion, platformInfo);
     let versionSpecificPath = tc.find('swift', nsv, osName);
