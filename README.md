@@ -40,4 +40,4 @@ jobs:
 ```
 
 # Limitations
-Currently, the tool only supports downloading Linux Ubuntu *release* versions.
+Currently, the tool only supports downloading Swift *release* versions for Linux Ubuntu.
