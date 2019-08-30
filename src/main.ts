@@ -87,7 +87,7 @@ async function downloadAndExtract(swiftURL: string, destination: string): Promis
     }
 }
 
-export async function install(swiftVersion: string) {
+export async function install(swiftVersion: string): Promise<string> {
     const platformInfo = await getPlatformInfo();
     let osName = (platformInfo.distributor + platformInfo.release).toLowerCase();
     const nsv = normalizeSwiftVersion(swiftVersion);  
@@ -117,6 +117,7 @@ export async function install(swiftVersion: string) {
 
     // Add swift tools to the path
     await core.addPath(binPath);
+    return versionSpecificPath;
 }
 
 async function run() {
